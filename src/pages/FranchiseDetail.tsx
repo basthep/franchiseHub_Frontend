@@ -85,7 +85,7 @@ const FranchiseDetail = () => {
         }
 
         const response = await fetch(
-          `http://localhost:5000/api/franchises/${id}`
+          `${import.meta.env.VITE_API_URL}/api/franchises/${id}`
         );
 
         if (response.status === 404) {
