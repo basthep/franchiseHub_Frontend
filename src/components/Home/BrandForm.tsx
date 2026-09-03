@@ -66,7 +66,7 @@ export default function BrandForm({
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/brand-submissions",
+        `${import.meta.env.VITE_API_URL}/api/ai/chat`,
         {
           method: "POST",
           headers: {
