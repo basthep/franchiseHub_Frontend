@@ -57,6 +57,7 @@ const FranchiseDetail = () => {
   // =====================================================
 useEffect(() => {
   const token = localStorage.getItem("token");
+  console.log(token)
 
   if (!token) {
     navigate("/login", { replace: true });
