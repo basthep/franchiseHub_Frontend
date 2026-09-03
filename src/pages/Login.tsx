@@ -64,7 +64,8 @@ export default function Login() {
           data.message || "Invalid email or password"
         );
       }
-
+      console.log(data)
+      console.log(data.token)
       /*
        * Store authentication information
        *
