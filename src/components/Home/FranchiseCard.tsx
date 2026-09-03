@@ -29,7 +29,7 @@ const FranchiseCard = ({
         {/* Image */}
         <div className="aspect-video overflow-hidden">
           <img
-            src={`http://localhost:5000${image || ""}`}
+            src={`${import.meta.env.VITE_API_URL}${image || ""}`}
             alt={name}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
