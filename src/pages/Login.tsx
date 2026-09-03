@@ -64,22 +64,12 @@ export default function Login() {
           data.message || "Invalid email or password"
         );
       }
-      console.log(data)
-      console.log(data.token)
-      /*
-       * Store authentication information
-       *
-       * localStorage is used when "Remember me" is checked.
-       * sessionStorage is used otherwise.
-       */
-      const storage = formData.remember
-        ? localStorage
-        : sessionStorage;
+      
+      localStorage.setItem("token", data.token);
 
-      storage.setItem("token", data.token);
-      storage.setItem(
-        "user",
-        JSON.stringify(data.user)
+      localStorage.setItem(
+       "user",
+       JSON.stringify(data.user)
       );
 
       setSuccess("Login successful! Redirecting...");
