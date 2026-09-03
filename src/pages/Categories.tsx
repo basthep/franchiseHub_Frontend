@@ -76,7 +76,7 @@ export default function Categories() {
         setError("");
 
         const response = await fetch(
-          "http://localhost:5000/api/franchises"
+          `${import.meta.env.VITE_API_URL}/api/franchises`
         ); 
 
         if (!response.ok) {
