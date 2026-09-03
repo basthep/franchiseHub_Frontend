@@ -55,64 +55,63 @@ const FranchiseDetail = () => {
   // =====================================================
   // CHECK LOGIN FIRST
   // =====================================================
-  useEffect(() => {
-    const token = localStorage.getItem("token");
+useEffect(() => {
+  const token = localStorage.getItem("token");
 
-    if (!token) {
-      navigate("/login", { replace: true });
-    }
-  }, [navigate]);
+  if (!token) {
+    navigate("/login", { replace: true });
+    return;
+  }
+}, [navigate]);
 
   // =====================================================
   // FETCH SINGLE FRANCHISE
   // =====================================================
   useEffect(() => {
-    const fetchFranchise = async () => {
-      // Don't fetch if user is not logged in
-      const token = localStorage.getItem("token");
+  const fetchFranchise = async () => {
+    const token = localStorage.getItem("token");
 
-      if (!token) {
+    if (!token) {
+      return;
+    }
+
+    try {
+      setLoading(true);
+      setError("");
+
+      if (!id) {
+        setError("Franchise ID is missing.");
         return;
       }
 
-      try {
-        setLoading(true);
-        setError("");
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/franchises/${id}`
+      );
 
-        if (!id) {
-          setError("Franchise ID is missing.");
-          return;
-        }
-
-        const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/franchises/${id}`
-        );
-
-        if (response.status === 404) {
-          setFranchise(null);
-          return;
-        }
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch franchise details");
-        }
-
-        const data = await response.json();
-
-        setFranchise(data);
-      } catch (error) {
-        console.error("Error fetching franchise:", error);
-
-        setError(
-          "Unable to load franchise details. Please try again."
-        );
-      } finally {
-        setLoading(false);
+      if (response.status === 404) {
+        setFranchise(null);
+        return;
       }
-    };
 
-    fetchFranchise();
-  }, [id]);
+      if (!response.ok) {
+        throw new Error("Failed to fetch franchise details");
+      }
+
+      const data = await response.json();
+
+      setFranchise(data);
+    } catch (error) {
+      console.error("Error fetching franchise:", error);
+      setError(
+        "Unable to load franchise details. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchFranchise();
+}, [id]);
 
   // =====================================================
   // LOADING STATE
