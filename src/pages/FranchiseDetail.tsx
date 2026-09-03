@@ -58,7 +58,7 @@ const FranchiseDetail = () => {
   useEffect(() => {
   const fetchFranchise = async () => {
     const token = localStorage.getItem("token");
-
+    console.log(token," here")
     if (!token) {
     navigate("/login");
     return;
