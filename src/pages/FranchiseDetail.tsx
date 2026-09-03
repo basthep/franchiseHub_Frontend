@@ -50,20 +50,7 @@ const FranchiseDetail = () => {
   const [error, setError] = useState("");
 
   const [isCallModalOpen, setIsCallModalOpen] = useState(false);
-  const [isRequestModalOpen, setIsRequestModalOpen] = useState(false);
-
-  // =====================================================
-  // CHECK LOGIN FIRST
-  // =====================================================
-useEffect(() => {
-  const token = localStorage.getItem("token");
-  console.log(token)
-
-  if (!token) {
-    navigate("/login", { replace: true });
-    return;
-  }
-}, [navigate]);
+  const [isRequestModalOpen, setIsRequestModalOpen] = useState(false); 
 
   // =====================================================
   // FETCH SINGLE FRANCHISE
@@ -73,8 +60,9 @@ useEffect(() => {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      return;
-    }
+    navigate("/login");
+    return;
+    }  
 
     try {
       setLoading(true);
