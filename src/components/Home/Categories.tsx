@@ -91,7 +91,7 @@ export default function Categories() {
         setLoading(true);
 
         const response = await fetch(
-          "http://localhost:5000/api/categories"
+          `${import.meta.env.VITE_API_URL}/api/categories`
         );
 
         if (!response.ok) {
