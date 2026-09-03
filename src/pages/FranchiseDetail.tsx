@@ -269,7 +269,7 @@ const FranchiseDetail = () => {
             <div className="overflow-hidden rounded-lg shadow-[var(--shadow-card)]">
 
               <img
-                src={`${import.meta.env.VITE_API_URL}{franchise.image || ""}`}
+                src={`${import.meta.env.VITE_API_URL}/{franchise.image || ""}`}
                 alt={franchise.name}
                 className="h-[400px] w-full object-cover"
               />
